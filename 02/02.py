@@ -11,9 +11,9 @@ def part1(game):
 
 def part2(game):
     p1, p2 = ord(game[0]) - 64, game[1]
-    if p2 == 'X': return p1 - 1 if p1 - 1 > 0 else p1 + 2
+    if p2 == 'X': return ((p1 + 1) % 3) + 1
     if p2 == 'Y': return 3 + p1
-    if p2 == 'Z': return 6 + (p1 + 1 if p1 + 1 < 4 else p1 - 2)
+    if p2 == 'Z': return 6 + (p1 % 3) + 1
 
 
 if __name__ == '__main__':
