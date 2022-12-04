@@ -1,5 +1,6 @@
 import utils
 
+
 def preprocess(data):
     return [[setlify(*section) for section in split('-', *split(',', [pair]))] for pair in data]
 
