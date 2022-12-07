@@ -33,7 +33,7 @@ def cd(cwd, cmd):
 
 
 def mkdir(name, cwd):
-    cwd['/'][name] = {'..': cwd , 'size': int(), '/': dict()}
+    cwd['/'][name] = {'..': cwd, 'size': int(), '/': dict()}
 
 
 def mkfile(name, info, cwd):
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     # Part 2
     timer.start()
     data = utils.read()
-    filesystem = {'..': None , 'size': int(), '/': dict()}
+    filesystem = {'..': None, 'size': int(), '/': dict()}
     build(data)
     unused_diskspace = 70000000 - filesystem['size']
     hits = sorted(find(filesystem, 30000000 - unused_diskspace, '>='), key=lambda x: x['size'])
