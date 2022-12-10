@@ -39,11 +39,13 @@ def move_knot(knot, following):
 if __name__ == '__main__':
     timer = utils.Timer()
 
-     # Part 1
+    """
+    # Part 1
     timer.start()
     data = [(line.split()[0], int(line.split()[1])) for line in utils.read_str_lines()]
     print(len(move_rope(data, 2)))
     timer.stop()  # 230.23ms
+    """
 
     # Part 2
     timer.start()
