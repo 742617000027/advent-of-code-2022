@@ -20,8 +20,7 @@ def draw(cycles):
     for i, sprite_pos in enumerate(cycles):
         row, pixel_pos = divmod(i, 40)
         crt[row] += '#' if sprite_pos - 1 <= pixel_pos <= sprite_pos + 1 else '.'
-    crt = [''.join(row) for row in crt]
-    return '\n'.join(crt)
+    return '\n'.join([''.join(row) for row in crt])
 
 
 if __name__ == '__main__':
@@ -43,4 +42,3 @@ if __name__ == '__main__':
     crt = draw(cycles)
     print(crt)
     timer.stop()  # 0.31ms
-    
