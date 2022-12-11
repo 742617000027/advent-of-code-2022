@@ -1,5 +1,4 @@
 import re
-from collections import defaultdict
 
 from numpy import prod
 from tqdm import tqdm
