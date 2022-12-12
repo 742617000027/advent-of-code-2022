@@ -5,7 +5,10 @@ from itertools import product
 import utils
 
 
-def make_graph(data):
+Vector = tuple[int, int]
+
+
+def make_graph(data: list[str]) -> tuple[nx.DiGraph, Vector, Vector]:
     terrain = np.array([[ord(c) for c in line] for line in data])
     start = tuple(np.argwhere(terrain == ord('S')).squeeze())
     end = tuple(np.argwhere(terrain == ord('E')).squeeze())
