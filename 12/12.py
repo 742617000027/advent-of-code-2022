@@ -46,11 +46,5 @@ if __name__ == '__main__':
     timer.start()
     data = utils.read_str_lines()
     G, _, end = make_graph(data)
-    print(min([
-        nx.shortest_path_length(G, node, end)
-        for node
-        in G.nodes
-        if G.nodes[node]['height'] == ord('a')
-           and nx.has_path(G, node, end)
-    ]))
-    timer.stop()  # 1918.52ms
+    print(nx.multi_source_dijkstra(G, {node for node in G.nodes if G.nodes[node]['height'] == ord('a')}, end)[0])
+    timer.stop()  # 102.79ms
