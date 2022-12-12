@@ -1,9 +1,9 @@
-import networkx as nx
-import numpy as np
 from itertools import product
 
-import utils
+import networkx as nx
+import numpy as np
 
+import utils
 
 Vector = tuple[int, int]
 
@@ -51,6 +51,6 @@ if __name__ == '__main__':
         for node
         in G.nodes
         if G.nodes[node]['height'] == ord('a')
-        and nx.has_path(G, node, end)
+           and nx.has_path(G, node, end)
     ]))
     timer.stop()  # 1918.52ms
