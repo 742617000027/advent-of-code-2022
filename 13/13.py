@@ -33,12 +33,12 @@ if __name__ == '__main__':
     timer = utils.Timer()
 
     # Part 1
-    # """
+    """
     timer.start()
     data = preprocess(utils.read())
     print(sum([i if compare(a, b) > 0 else 0 for i, (a, b) in enumerate(data, start=1)]))
     timer.stop()  # 14.26ms
-    # """
+    """
 
     # Part 2
     timer.start()
