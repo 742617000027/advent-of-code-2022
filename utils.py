@@ -1,5 +1,5 @@
 from collections import defaultdict, deque
-from functools import reduce
+from functools import cmp_to_key, reduce
 from itertools import combinations, permutations, product
 
 from time import process_time
@@ -51,6 +51,7 @@ defaultdict = defaultdict
 deque = deque
 
 # functools
+cmp_to_key = cmp_to_key
 reduce = reduce
 
 # itertools
