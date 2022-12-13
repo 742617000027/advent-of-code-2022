@@ -8,15 +8,26 @@ import utils
 Vector = tuple[int, int]
 
 
-def make_graph(data: list[str]) -> tuple[nx.DiGraph, Vector, Vector]:
-    terrain = np.array([[ord(c) for c in line] for line in data])
-    start = tuple(np.argwhere(terrain == ord('S')).squeeze())
-    end = tuple(np.argwhere(terrain == ord('E')).squeeze())
-    terrain[terrain == ord('S')] = ord('a')
-    terrain[terrain == ord('E')] = ord('z')
+def preprocess(data: list[str]) -> tuple[nx.DiGraph, Vector, Vector]:
+    terrain, start, end = make_map(data)
+    G = make_graph(terrain)
+    return G, start, end
 
-    Y, X = terrain.shape
+
+def make_map(data: list[str]) -> np.array:
+    terrain = np.array([[ord(c) for c in line] for line in data])
+    start, end = find('S', terrain), find('E', terrain)
+    terrain[start], terrain[end] = ord('a'), ord('z')
+    return terrain, start, end
+
+
+def find(needle: str, haystack: np.array) -> Vector:
+    return tuple(np.argwhere(haystack == ord(needle)).squeeze())
+
+
+def make_graph(terrain: np.array) -> nx.DiGraph:
     G = nx.DiGraph()
+    Y, X = terrain.shape
 
     for current in product(range(Y), range(X)):
         y, x = current
@@ -26,8 +37,7 @@ def make_graph(data: list[str]) -> tuple[nx.DiGraph, Vector, Vector]:
                 neighbor = (yy, xx)
                 if terrain[neighbor] - 1 <= terrain[current]:
                     G.add_edge(current, neighbor)
-
-    return G, start, end
+    return G
 
 
 if __name__ == '__main__':
@@ -36,15 +46,13 @@ if __name__ == '__main__':
     # Part 1
     """
     timer.start()
-    data = utils.read_str_lines()
-    G, start, end = make_graph(data)
-    print(len(nx.shortest_path_length(G, node, end))
-    timer.stop()  # 74.96ms
+    G, start, end = preprocess(utils.read_str_lines())
+    print(nx.shortest_path_length(G, start, end))
+    timer.stop()  # 65.14ms
     """
 
     # Part 2
     timer.start()
-    data = utils.read_str_lines()
-    G, _, end = make_graph(data)
+    G, _, end = preprocess(utils.read_str_lines())
     print(nx.multi_source_dijkstra(G, {node for node in G.nodes if G.nodes[node]['height'] == ord('a')}, end)[0])
-    timer.stop()  # 102.79ms
+    timer.stop()  # 91.56ms
