@@ -1,5 +1,6 @@
 from time import process_time
 
+DIRS = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
 class Timer:
     def __init__(self):
