@@ -1,6 +1,10 @@
+from collections import defaultdict, deque
+from itertools import combinations, permutations, product
+
 from time import process_time
 
 DIRS = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
 
 class Timer:
     def __init__(self):
@@ -39,3 +43,13 @@ def read(file: str = 'input') -> str:
     with open(file, 'r') as fp:
         content = fp.read()
     return content
+
+
+# collections
+defaultdict = defaultdict
+deque = deque
+
+# itertools
+combinations = combinations
+permutations = permutations
+product = product
