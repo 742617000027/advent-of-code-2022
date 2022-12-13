@@ -7,7 +7,7 @@ Vector = tuple[int, int]
 
 def process(data: list[str]) -> tuple[nx.DiGraph, Vector, Vector]:
     terrain = [[ord(c) for c in line] for line in data]
-    [(sy, sx)], [(ey, ex)] = [[(y, x.index(c)) for y, x in enumerate(terrain) if c in x] for c in [ord('S'), ord('E')]]
+    [(sy, sx)], [(ey, ex)] = [[(y, x.index(i)) for y, x in enumerate(terrain) if i in x] for i in [ord('S'), ord('E')]]
     terrain[sy][sx], terrain[ey][ex] = ord('a'), ord('z')
     Y, X = len(terrain), len(terrain[0])
     G = nx.DiGraph()
