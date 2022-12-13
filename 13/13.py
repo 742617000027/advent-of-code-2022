@@ -14,8 +14,7 @@ def compare(l, r):
                     if b < a: return -1
                     break
                 case (list(), list()):
-                    ret = compare(a[:len(b)], b[:len(a)])
-                    if ret is not None: return ret
+                    if (ret := compare(a[:len(b)], b[:len(a)])) is not None: return ret
                     if len(a) < len(b): return 1
                     if len(b) < len(a): return -1
                     break
