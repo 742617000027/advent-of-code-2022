@@ -20,10 +20,8 @@ def compare(l, r):
                     if len(b) < len(a): return -1
                     break
                 case _:
-                    swap = isinstance(a, list)
-                    if swap: b, a = a, b
-                    a = [a]
-                    if swap: a, b = b, a
+                    if isinstance(a, int): a = [a]
+                    if isinstance(b, int): b = [b]
     if len(l) < len(r): return 1
     if len(r) < len(l): return -1
 
