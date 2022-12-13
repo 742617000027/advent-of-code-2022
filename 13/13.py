@@ -1,14 +1,18 @@
+from typing import Union
+
 import utils
 
+Packet = list[Union[int, 'Packet'], ...]
 
-def preprocess(data):
+
+def preprocess(data: str) -> list[Packet]:
     return [[eval(packet) for packet in pair.split('\n')] for pair in data.split('\n\n')]
 
 
-def compare(l, r):
+def compare(l: Packet, r: Packet) -> int | None:
     for a, b in zip(*[l, r]):
         while True:
-             match (a, b):
+            match (a, b):
                 case (int(), int()):
                     if a < b: return 1
                     if b < a: return -1
@@ -29,12 +33,12 @@ if __name__ == '__main__':
     timer = utils.Timer()
 
     # Part 1
-    """
+    # """
     timer.start()
     data = preprocess(utils.read())
     print(sum([i if compare(a, b) > 0 else 0 for i, (a, b) in enumerate(data, start=1)]))
     timer.stop()  # 14.26ms
-    """
+    # """
 
     # Part 2
     timer.start()
