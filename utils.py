@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from functools import reduce
 from itertools import combinations, permutations, product
 
 from time import process_time
@@ -48,6 +49,9 @@ def read(file: str = 'input') -> str:
 # collections
 defaultdict = defaultdict
 deque = deque
+
+# functools
+reduce = reduce
 
 # itertools
 combinations = combinations
