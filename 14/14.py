@@ -39,7 +39,6 @@ def sandfall(data: tuple[np.array, np.array]) -> np.array:
             break
         if not any([in_cave(cave, sand + direction) for direction in [down, downleft, downright]]): break
         cave[tuple(sand)] = 1
-
     return cave
 
 
@@ -62,11 +61,10 @@ if __name__ == '__main__':
 
     # Part 2
     timer.start()
-    data = preprocess(utils.read_str_lines())
-    cave, ingress = data
+    cave, ingress = preprocess(utils.read_str_lines())
     pad_l, pad_r = cave.shape[0] - ingress[1], cave.shape[0] - (cave.shape[1] - (ingress[1] + 1))
-    cave = np.pad(cave, ((0, 0), (pad_l, pad_r)))
-    cave = np.concatenate([cave, np.tile(np.array([[0], [-1]]), reps=cave.shape[1])])
+    cave = np.pad(cave, ((0, 2), (pad_l, pad_r)))
+    cave[-1, :] = -1
     ingress[1] += pad_l
     print(np.sum(sandfall((cave, ingress)) == 1))
     timer.stop()  # 12388.22ms
