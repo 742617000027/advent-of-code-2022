@@ -27,25 +27,19 @@ def sandfall(data: tuple[np.array, np.array]) -> np.array:
         if cave[tuple(ingress)] == 1: break
         sand = ingress + np.array([-1, 0])
         while True:
-            if in_cave(cave, sand + down) and cave[tuple(sand + down)] not in [-1, 1]:
-                sand += down
+            if (newpos := sand + down)[0] < cave.shape[0] and cave[tuple(newpos)] not in [-1, 1]:
+                sand = newpos
                 continue
-            if in_cave(cave, sand + downleft) and cave[tuple(sand + downleft)] not in [-1, 1]:
-                sand += downleft
+            if (newpos := sand + downleft)[0] < cave.shape[0] and cave[tuple(newpos)] not in [-1, 1]:
+                sand = newpos
                 continue
-            if in_cave(cave, sand + downright) and cave[tuple(sand + downright)] not in  [-1, 1]:
-                sand += downright
+            if (newpos := sand + downright)[0] < cave.shape[0] and cave[tuple(newpos)] not in  [-1, 1]:
+                sand = newpos
                 continue
             break
-        if not any([in_cave(cave, sand + direction) for direction in [down, downleft, downright]]): break
+        if not any([(sand + direction)[0] < cave.shape[0] for direction in [down, downleft, downright]]): break
         cave[tuple(sand)] = 1
     return cave
-
-
-def in_cave(cave: np.array, point: np.array) -> bool:
-    Y, X = cave.shape
-    y, x = point
-    return 0 <= y < Y and 0 <= x < X
 
 
 if __name__ == '__main__':
@@ -56,7 +50,7 @@ if __name__ == '__main__':
     timer.start()
     data = preprocess(utils.read_str_lines())
     print(np.sum(sandfall(data) == 1))
-    timer.stop()  # 502.17ms
+    timer.stop()  # 319.74ms
     """
 
     # Part 2
@@ -67,4 +61,4 @@ if __name__ == '__main__':
     cave[-1, :] = -1
     ingress[1] += pad_l
     print(np.sum(sandfall((cave, ingress)) == 1))
-    timer.stop()  # 12388.22ms
+    timer.stop()  # 6261.63ms
