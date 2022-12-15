@@ -35,7 +35,7 @@ def manhatten(sx, sy, bx, by):
 
 
 def tuning_freq(hulls, lower, upper):
-    for perm in utils.permutations(hulls, 4):
+    for perm in utils.combinations(hulls, 4):
         intersection = set.intersection(*perm)
         if len(intersection) == 1:
             (point, ) = intersection
