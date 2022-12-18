@@ -5,13 +5,13 @@ def preprocess(data):
     return {(x, y, z): 0 for x, y, z in [[int(i) for i in droplet.split(',')] for droplet in data]}
 
 
-def surface(space, limits):
-    for point, direction in utils.product(space, utils.DIRS3D):
+def surface(data, limits):
+    for point, direction in utils.product(data, utils.DIRS3D):
         neighbor = tuple(xn + dxn for xn, dxn in zip(point, direction))
-        if neighbor not in space and \
+        if neighbor not in data and \
                 all([l <= xn <= u for xn, (l, u) in zip(neighbor, tuple(zip(*limits)))]):
-            space[point] += 1
-    return space
+            data[point] += 1
+    return data
 
 
 def inner_surface(data, limits):
@@ -26,9 +26,9 @@ def outer_surface(data):
     return complete
 
 
-def steamfill(space, init=(0, 0, 0)):
-    (lx, ly, lz), (ux, uy, uz) = get_limits(space, 1)
-    space[init] = 0
+def steamfill(data, init=(0, 0, 0)):
+    (lx, ly, lz), (ux, uy, uz) = get_limits(data, 1)
+    data[init] = 0
     q = utils.deque([init])
     while q:
         point = q.popleft()
@@ -36,10 +36,10 @@ def steamfill(space, init=(0, 0, 0)):
         for dx, dy, dz in utils.DIRS3D:
             if lx <= x + dx <= ux and ly <= y + dy <= uy and lz <= z + dz <= uz:
                 neighbor = (x + dx, y + dy, z + dz)
-                if neighbor not in space:
-                    space[neighbor] = 0
+                if neighbor not in data:
+                    data[neighbor] = 0
                     q.append(neighbor)
-    return space
+    return data
 
 
 def get_limits(data, expansion=0):
