@@ -9,7 +9,7 @@ def surface(space, limits):
     for point, direction in utils.product(space, utils.DIRS3D):
         neighbor = tuple(xn + dxn for xn, dxn in zip(point, direction))
         if neighbor not in space and \
-                all([lower <= coord <= upper for coord, (lower, upper) in zip(neighbor, tuple(zip(*limits)))]):
+                all([l <= xn <= u for xn, (l, u) in zip(neighbor, tuple(zip(*limits)))]):
             space[point] += 1
     return space
 
