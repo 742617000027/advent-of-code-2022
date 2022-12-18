@@ -43,7 +43,7 @@ def steamfill(data, init=(0, 0, 0)):
 
 
 def get_limits(data, expansion=0):
-    return tuple([0 - expansion] * 3), tuple(max(axis) + expansion for axis in list(zip(*list(data.keys()))))
+    return tuple([0 - expansion] * 3), tuple(max(axis) + expansion for axis in zip(*list(data.keys())))
 
 
 if __name__ == '__main__':
