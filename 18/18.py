@@ -50,12 +50,12 @@ if __name__ == '__main__':
     timer = utils.Timer()
 
     # Part 1
-    # """
+    """
     timer.start()
     data = preprocess(utils.read_str_lines())
     print(sum([val for val in surface(data, get_limits(data, 1)).values()]))
     timer.stop()  # 15.51ms
-    # """
+    """
 
     # Part 2
     timer.start()
