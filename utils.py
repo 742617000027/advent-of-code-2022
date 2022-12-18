@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from copy import deepcopy
 from functools import cmp_to_key, reduce
 from itertools import combinations, permutations, product
 
@@ -50,6 +51,9 @@ def read(file: str = 'input') -> str:
 # collections
 defaultdict = defaultdict
 deque = deque
+
+# copy
+deepcopy = deepcopy
 
 # functools
 cmp_to_key = cmp_to_key
