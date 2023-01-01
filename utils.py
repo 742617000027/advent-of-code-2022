@@ -6,6 +6,7 @@ from itertools import combinations, permutations, product
 from time import process_time
 
 DIRS = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+DIAGDIRS = [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]
 DIRS3D = [(-1, 0, 0), (1, 0, 0), (0, -1, 0), (0, 1, 0), (0, 0, -1), (0, 0, 1)]
 
 
